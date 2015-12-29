@@ -15,7 +15,7 @@ import ReactDOM from 'react-dom/server';
 import Router from './routes';
 import Html from './components/Html';
 import assets from './assets';
-import { port } from './config';
+import { listenAddress, port } from './config';
 
 const server = global.server = express();
 
@@ -59,7 +59,7 @@ server.get('*', async (req, res, next) => {
 //
 // Launch the server
 // -----------------------------------------------------------------------------
-server.listen(port, () => {
+server.listen(port, listenAddress, () => {
   /* eslint-disable no-console */
-  console.log(`The server is running at http://localhost:${port}/`);
+  console.log(`The server is running at http://${listenAddress}:${port}/`);
 });
