@@ -84,6 +84,10 @@ async function start() {
             // no need to watch '*.js' here, webpack will take care of it for us,
             // including full page reloads if HMR won't work
             files: ['build/content/**/*.*'],
+            port: parseInt(process.env.PORT || '8080') + 1,
+            ui: {
+              port: parseInt(process.env.PORT || '8080') + 2,
+            },
           }, resolve);
           handleServerBundleComplete = runServer;
         }
