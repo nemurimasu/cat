@@ -9,4 +9,4 @@
 
 export const listenAddress = process.env.IP || 'localhost';
 export const port = process.env.PORT || 5000;
-export const host = process.env.WEBSITE_HOSTNAME || `${listenAddress}:${port}`;
+export const host = process.env.WEBSITE_HOSTNAME || process.env.C9_HOSTNAME || `${listenAddress}:${port}`;
