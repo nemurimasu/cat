@@ -9,8 +9,6 @@
 
 @import '../variables.scss';
 
-$brand-color: #61dafb;
-
 .root {
   background: #373277;
   color: #fff;
@@ -18,9 +16,10 @@ $brand-color: #61dafb;
 
 .container {
   margin: 0 auto;
-  padding: 20px 0;
+  padding: 0 1em 1em 0;
   max-width: $max-content-width;
   list-style-type: none;
+  font-size: 11.3pt;
 }
 
 .container > li {

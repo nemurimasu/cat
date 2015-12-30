@@ -12,7 +12,6 @@
 $brand-color: #61dafb;
 
 .root {
-  background: #373277;
   color: #fff;
 }
 
@@ -24,17 +23,9 @@ $brand-color: #61dafb;
 
 .brand {
   color: color($brand-color lightness(+10%));
-  text-decoration: none;
   font-size: 1.75em; /* ~28px */
-}
-
-.brandTxt {
-  margin-left: 10px;
-}
-
-.nav {
-  float: right;
-  margin-top: 6px;
+  position: absolute;
+  margin: 0 0 0 20px;
 }
 
 .banner {
