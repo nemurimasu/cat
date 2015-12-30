@@ -10,6 +10,7 @@
 import React, { Component, PropTypes } from 'react';
 import s from './WhiteCard.scss';
 import withStyles from '../../decorators/withStyles';
+import classNames from 'classnames';
 
 @withStyles(s)
 class WhiteCard extends Component {
@@ -17,11 +18,15 @@ class WhiteCard extends Component {
   static propTypes = {
     text: PropTypes.string.isRequired,
     deck: PropTypes.string.isRequired,
+    selected: PropTypes.bool.isRequired,
   };
 
   render() {
+    let classes = {};
+    classes[s.root] = true;
+    classes[s.selected] = this.props.selected;
     return (
-      <li className={s.root}>
+      <li className={classNames(classes)}>
         <div className={s.container}>
           <div className={s.text}>
             {this.props.text}

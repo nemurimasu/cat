@@ -1,0 +1,6 @@
+{
+  "name": "Pick",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./Pick.js"
+}

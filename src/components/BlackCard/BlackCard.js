@@ -8,27 +8,32 @@
  */
 
 import React, { Component, PropTypes } from 'react';
-import s from './Hand.scss';
+import s from './BlackCard.scss';
 import withStyles from '../../decorators/withStyles';
-import WhiteCard from '../WhiteCard';
 
 @withStyles(s)
-class Hand extends Component {
+class BlackCard extends Component {
   
   static propTypes = {
-    cards: PropTypes.array.isRequired
+    text: PropTypes.string.isRequired,
+    deck: PropTypes.string.isRequired,
   };
 
   render() {
     return (
-      <div className={s.root}>
-        <ul className={s.container}>
-          {this.props.cards.map((c) => <WhiteCard key={c.key} text={c.text} deck={c.deck} selected={c.selected} />)}
-        </ul>
-      </div>
+      <li className={s.root}>
+        <div className={s.container}>
+          <div className={s.text}>
+            {this.props.text}
+          </div>
+          <div className={s.deck}>
+            {this.props.deck}
+          </div>
+        </div>
+      </li>
     );
   }
 
 }
 
-export default Hand;
+export default BlackCard;

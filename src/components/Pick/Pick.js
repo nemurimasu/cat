@@ -8,22 +8,26 @@
  */
 
 import React, { Component, PropTypes } from 'react';
-import s from './Hand.scss';
+import s from './Pick.scss';
 import withStyles from '../../decorators/withStyles';
 import WhiteCard from '../WhiteCard';
+import BlackCard from '../BlackCard';
 
 @withStyles(s)
-class Hand extends Component {
+class Pick extends Component {
   
   static propTypes = {
-    cards: PropTypes.array.isRequired
+    black: PropTypes.object.isRequired,
+    whites: PropTypes.array.isRequired,
   };
 
   render() {
+    var black = this.props.black;
     return (
       <div className={s.root}>
         <ul className={s.container}>
-          {this.props.cards.map((c) => <WhiteCard key={c.key} text={c.text} deck={c.deck} selected={c.selected} />)}
+          <BlackCard text={black.text} deck={black.deck} pick={black.pick} />
+          {this.props.whites.map((c) => <WhiteCard key={c.key} text={c.text} deck={c.deck} selected={false} />)}
         </ul>
       </div>
     );
@@ -31,4 +35,4 @@ class Hand extends Component {
 
 }
 
-export default Hand;
+export default Pick;

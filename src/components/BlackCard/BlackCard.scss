@@ -10,8 +10,8 @@
 @import '../variables.scss';
 
 .root {
-  background: #fff;
-  color: #000;
+  background: #000;
+  color: #ffff;
   font-family: 'Roboto', sans-serif;
   border: 1pt solid #777;
   border-radius: 1em;
@@ -37,8 +37,4 @@
   position: absolute;
   bottom: 0;
   font-size: 60%;
-}
-
-.selected {
-  background: #aa7;
 }
