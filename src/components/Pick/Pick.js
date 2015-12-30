@@ -25,9 +25,10 @@ class Pick extends Component {
     var black = this.props.black;
     return (
       <div className={s.root}>
+        <div className={s.heading}>Pick</div>
         <ul className={s.container}>
           <BlackCard text={black.text} deck={black.deck} pick={black.pick} />
-          {this.props.whites.map((c) => <WhiteCard key={c.key} text={c.text} deck={c.deck} selected={false} />)}
+          {this.props.whites.map((c) => <WhiteCard key={c.key} text={c.text} deck={c.deck} />)}
         </ul>
       </div>
     );

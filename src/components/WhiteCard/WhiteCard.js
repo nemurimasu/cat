@@ -18,7 +18,7 @@ class WhiteCard extends Component {
   static propTypes = {
     text: PropTypes.string.isRequired,
     deck: PropTypes.string.isRequired,
-    selected: PropTypes.bool.isRequired,
+    selected: PropTypes.bool,
   };
 
   render() {

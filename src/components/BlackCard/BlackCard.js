@@ -16,18 +16,31 @@ class BlackCard extends Component {
   
   static propTypes = {
     text: PropTypes.string.isRequired,
+    pick: PropTypes.number.isRequired,
     deck: PropTypes.string.isRequired,
   };
 
   render() {
+    let drawAction;
+    if (this.props.pick > 2) {
+      drawAction = <div>Draw <span className={s.actionNumber}>{this.props.pick - 1}</span></div>
+    }
     return (
       <li className={s.root}>
         <div className={s.container}>
           <div className={s.text}>
             {this.props.text}
           </div>
-          <div className={s.deck}>
-            {this.props.deck}
+          <div className={s.bottom}>
+            <div className={s.actions}>
+              {drawAction}
+              <div>
+                Pick <span className={s.actionNumber}>{this.props.pick}</span>
+              </div>
+            </div>
+            <div className={s.deck}>
+              {this.props.deck}
+            </div>
           </div>
         </div>
       </li>

@@ -33,8 +33,40 @@
   position: relative;
 }
 
-.deck {
+.bottom {
   position: absolute;
   bottom: 0;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+  width: 100%;
+  align-items: flex-end;
+}
+
+.deck {
   font-size: 60%;
+}
+
+.actions > div {
+  text-transform: uppercase;
+  font-size: 12pt;
+  line-height: 1.2;
+  margin-top: 2pt;
+}
+
+.actions {
+  text-align: right;
+  position: relative;
+  bottom: -1pt;
+}
+
+.actionNumber {
+  border-radius: 50%;
+  background: #fff;
+  display: inline-block;
+  color: #000;
+  text-align: center;
+  width: 14pt;
+  height: 14pt;
+  margin-bottom: -1pt;
 }
