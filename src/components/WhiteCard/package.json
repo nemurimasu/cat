@@ -1,0 +1,6 @@
+{
+  "name": "WhiteCard",
+  "version": "0.0.0",
+  "private": true,
+  "main": "./WhiteCard.js"
+}

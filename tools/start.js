@@ -81,9 +81,6 @@ async function start() {
               target: host,
               middleware: [wpMiddleware, ...hotMiddlewares],
             },
-            // no need to watch '*.js' here, webpack will take care of it for us,
-            // including full page reloads if HMR won't work
-            files: ['build/content/**/*.*'],
             port: parseInt(process.env.PORT || '8080', 10) + 1,
             ui: {
               port: parseInt(process.env.PORT || '8080', 10) + 2,

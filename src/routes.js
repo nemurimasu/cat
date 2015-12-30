@@ -11,12 +11,12 @@ import React from 'react';
 import Router from 'react-routing/src/Router';
 import fetch from './core/fetch';
 import App from './components/App';
-import ContentPage from './components/ContentPage';
 import ContactPage from './components/ContactPage';
 import LoginPage from './components/LoginPage';
 import RegisterPage from './components/RegisterPage';
 import NotFoundPage from './components/NotFoundPage';
 import ErrorPage from './components/ErrorPage';
+import MainPage from './components/MainPage';
 
 const router = new Router(on => {
   on('*', async (state, next) => {
@@ -30,11 +30,7 @@ const router = new Router(on => {
 
   on('/register', async () => <RegisterPage />);
 
-  on('*', async (state) => {
-    const response = await fetch(`/api/content?path=${state.path}`);
-    const content = await response.json();
-    return content && <ContentPage {...content} />;
-  });
+  on('/', async () => <MainPage />);
 
   on('error', (state, error) => state.statusCode === 404 ?
     <App context={state.context} error={error}><NotFoundPage /></App> :
