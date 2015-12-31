@@ -26,7 +26,7 @@ class BlackCard extends Component {
       drawAction = <div>Draw <span className={s.actionNumber}>{this.props.pick - 1}</span></div>
     }
     return (
-      <li className={s.root}>
+      <li className={s.root} onMouseDown={(e) => e.preventDefault()}>
         <div className={s.container}>
           <div className={s.text} dangerouslySetInnerHTML={{__html: this.props.text}} />
           <div className={s.bottom}>
