@@ -15,8 +15,6 @@ import { addEventListener, removeEventListener } from './core/DOMUtils';
 
 let cssContainer = document.getElementById('css');
 const appContainer = document.getElementById('app');
-const context = {
-};
 
 function render(state) {
   Router.dispatch(state, (newState, component) => {
@@ -34,8 +32,7 @@ function run() {
     currentState = Object.assign({}, location.state, {
       path: location.pathname,
       query: location.query,
-      state: location.state,
-      context,
+      state: location.state
     });
     render(currentState);
   });

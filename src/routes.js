@@ -18,14 +18,14 @@ import MainPage from './components/MainPage';
 const router = new Router(on => {
   on('*', async (state, next) => {
     const component = await next();
-    return component && <App context={state.context}>{component}</App>;
+    return component && <App>{component}</App>;
   });
 
   on('/', async () => <MainPage />);
 
   on('error', (state, error) => state.statusCode === 404 ?
-    <App context={state.context} error={error}><NotFoundPage /></App> :
-    <App context={state.context} error={error}><ErrorPage /></App>
+    <App error={error}><NotFoundPage /></App> :
+    <App error={error}><ErrorPage /></App>
   );
 });
 
