@@ -8,50 +8,33 @@
  */
 
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 import s from './MainPage.scss';
 import withStyles from '../../decorators/withStyles';
 import Hand from '../Hand';
 import Pick from '../Pick';
 
-const title = 'CAH';
-const testCards = [
-  {key: 0, text: "Coat hanger abortions.", deck: "Base Set", selected: false},
-  {key: 1, text: "Man meat.", deck: "Base Set", selected: false},
-  {key: 2, text: "Autocannibalism.", deck: "Base Set", selected: false},
-  {key: 3, text: "Vigorous jazz hands.", deck: "Base Set", selected: true},
-  {key: 4, text: "Flightless birds.", deck: "Base Set", selected: false},
-  {key: 5, text: "Pictures of boobs.", deck: "Base Set", selected: false},
-  {key: 6, text: "Doing the right thing.", deck: "Base Set", selected: false},
-  {key: 7, text: "The violation of our most basic human rights.", deck: "Base Set", selected: false},
-  {key: 8, text: "Viagra®.", deck: "Base Set", selected: false},
-  {key: 9, text: "Self-loathing.", deck: "Base Set", selected: false},
-  //{key: 10, text: "Spectacular abs.", deck: "Base Set", selected: false},
-  //{key: 11, text: "A balanced breakfast.", deck: "Base Set", selected: false},
-];
-const testState = {
-  mode: "pick",
-  black: {
-    text: "Why can't I sleep at night?",
-    deck: "Base Set",
-    pick: 1,
-  },
-  whites: [
-    {key: 0, text: "Vigorous jazz hands.", deck: "Base Set"},
-  ],
-};
-
+@connect(
+  state => ({
+    gameMode: state.gamePhase.mode,
+  })
+)
 @withStyles(s)
 class MainPage extends Component {
+  
+  static propTypes = {
+    gameMode: PropTypes.string.isRequired
+  };
 
   render() {
     var bottomUi;
-    if (testState.mode === 'pick') {
-      bottomUi = <Pick black={testState.black} whites={testState.whites} />;
+    if (this.props.gameMode === 'pick') {
+      bottomUi = <Pick />;
     }
     return (
       <div className={s.root}>
         <div className={s.container}>
-          <Hand cards={testCards} />
+          <Hand />
           {bottomUi}
         </div>
       </div>

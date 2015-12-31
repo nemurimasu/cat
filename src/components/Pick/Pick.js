@@ -8,12 +8,19 @@
  */
 
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 import s from './Pick.scss';
 import withStyles from '../../decorators/withStyles';
 import WhiteCard from '../WhiteCard';
 import BlackCard from '../BlackCard';
 
 @withStyles(s)
+@connect(
+  state => ({
+    black: state.gamePhase.black,
+    whites: state.gamePhase.whites,
+  })
+)
 class Pick extends Component {
   
   static propTypes = {

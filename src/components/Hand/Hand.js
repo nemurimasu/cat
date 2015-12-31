@@ -8,11 +8,17 @@
  */
 
 import React, { Component, PropTypes } from 'react';
+import { connect } from 'react-redux';
 import s from './Hand.scss';
 import withStyles from '../../decorators/withStyles';
 import WhiteCard from '../WhiteCard';
 
 @withStyles(s)
+@connect(
+  state => ({
+    cards: state.hand.cards,
+  })
+)
 class Hand extends Component {
   
   static propTypes = {
