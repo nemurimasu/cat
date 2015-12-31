@@ -1,0 +1,1 @@
+cards.json is a 2015-12-30 dump of [JSON Against Humanity](http://www.crhallberg.com/cah/json) including all packs except for Apples to Apples, Crabs Adjust Humidity and Cads About Matrimony because I don't think those are under the same CC-BY-NC-SA license.
