@@ -12,18 +12,21 @@ import { connect } from 'react-redux';
 import s from './Hand.scss';
 import withStyles from '../../decorators/withStyles';
 import WhiteCard from '../WhiteCard';
+import * as gamePhaseActions from '../../redux/modules/gamePhase';
 
 @withStyles(s)
 @connect(
   state => ({
     cards: state.hand.cards,
     selected: state.gamePhase.selected,
-  })
+  }),
+  {selectWhite: gamePhaseActions.selectWhite}
 )
 class Hand extends Component {
   
   static propTypes = {
-    cards: PropTypes.array.isRequired
+    cards: PropTypes.array.isRequired,
+    selectWhite: PropTypes.func.isRequired,
   };
 
   render() {
@@ -34,7 +37,12 @@ class Hand extends Component {
     return (
       <div className={s.root}>
         <ul className={s.container}>
-          {this.props.cards.map((c) => <WhiteCard key={c.key} text={c.text} deck={c.deck} selected={!!selectedCards[c.key]} />)}
+          {this.props.cards.map((c) => {
+            const onClick = (event) => {
+              this.props.selectWhite(c.key);
+            };
+            return <WhiteCard key={c.key} text={c.text} deck={c.deck} selected={!!selectedCards[c.key]} onClick={onClick} />;
+          })}
         </ul>
       </div>
     );

@@ -13,6 +13,7 @@ import s from './Pick.scss';
 import withStyles from '../../decorators/withStyles';
 import WhiteCard from '../WhiteCard';
 import BlackCard from '../BlackCard';
+import * as gamePhaseActions from '../../redux/modules/gamePhase';
 
 @withStyles(s)
 @connect(
@@ -20,7 +21,8 @@ import BlackCard from '../BlackCard';
     black: state.gamePhase.black,
     whites: state.hand.cards,
     selected: state.gamePhase.selected,
-  })
+  }),
+  {deselectWhite: gamePhaseActions.deselectWhite}
 )
 class Pick extends Component {
   
@@ -40,7 +42,12 @@ class Pick extends Component {
         <div className={s.heading}>Pick</div>
         <ul className={s.container}>
           <BlackCard text={black.text} deck={black.deck} pick={black.pick} />
-          {this.props.selected.map((c) => <WhiteCard key={c.key} text={whites[c.key].text} deck={whites[c.key].deck} />)}
+          {this.props.selected.map((c) => {
+            const onClick = () => {
+              this.props.deselectWhite(c.key);
+            };
+            return <WhiteCard key={c.key} text={whites[c.key].text} deck={whites[c.key].deck} onClick={onClick} />;
+          })}
         </ul>
       </div>
     );

@@ -19,6 +19,7 @@ class WhiteCard extends Component {
     text: PropTypes.string.isRequired,
     deck: PropTypes.string.isRequired,
     selected: PropTypes.bool,
+    onClick: PropTypes.func,
   };
 
   render() {
@@ -26,7 +27,7 @@ class WhiteCard extends Component {
     classes[s.root] = true;
     classes[s.selected] = this.props.selected;
     return (
-      <li className={classNames(classes)}>
+      <li className={classNames(classes)} onClick={this.props.onClick} onMouseDown={(e) => e.preventDefault()}>
         <div className={s.container}>
           <div className={s.text} dangerouslySetInnerHTML={{__html: this.props.text}} />
           <div className={s.deck}>
