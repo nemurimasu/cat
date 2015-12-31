@@ -18,7 +18,8 @@ import BlackCard from '../BlackCard';
 @connect(
   state => ({
     black: state.gamePhase.black,
-    whites: state.gamePhase.whites,
+    whites: state.hand.cards,
+    selected: state.gamePhase.selected,
   })
 )
 class Pick extends Component {
@@ -29,13 +30,17 @@ class Pick extends Component {
   };
 
   render() {
-    var black = this.props.black;
+    const black = this.props.black;
+    const whites = {};
+    for (let white of this.props.whites) {
+      whites[white.key] = white;
+    }
     return (
       <div className={s.root}>
         <div className={s.heading}>Pick</div>
         <ul className={s.container}>
           <BlackCard text={black.text} deck={black.deck} pick={black.pick} />
-          {this.props.whites.map((c) => <WhiteCard key={c.key} text={c.text} deck={c.deck} />)}
+          {this.props.selected.map((c) => <WhiteCard key={c.key} text={whites[c.key].text} deck={whites[c.key].deck} />)}
         </ul>
       </div>
     );

@@ -17,6 +17,7 @@ import WhiteCard from '../WhiteCard';
 @connect(
   state => ({
     cards: state.hand.cards,
+    selected: state.gamePhase.selected,
   })
 )
 class Hand extends Component {
@@ -26,10 +27,14 @@ class Hand extends Component {
   };
 
   render() {
+    const selectedCards = {};
+    for (let selectedCard of this.props.selected) {
+      selectedCards[selectedCard.key] = true;
+    }
     return (
       <div className={s.root}>
         <ul className={s.container}>
-          {this.props.cards.map((c) => <WhiteCard key={c.key} text={c.text} deck={c.deck} selected={c.selected} />)}
+          {this.props.cards.map((c) => <WhiteCard key={c.key} text={c.text} deck={c.deck} selected={!!selectedCards[c.key]} />)}
         </ul>
       </div>
     );
