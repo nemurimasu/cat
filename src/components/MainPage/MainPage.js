@@ -43,14 +43,6 @@ const testState = {
 @withStyles(s)
 class MainPage extends Component {
 
-  static contextTypes = {
-    onSetTitle: PropTypes.func.isRequired,
-  };
-
-  componentWillMount() {
-    this.context.onSetTitle(title);
-  }
-
   render() {
     var bottomUi;
     if (testState.mode === 'pick') {
