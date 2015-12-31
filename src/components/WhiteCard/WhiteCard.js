@@ -28,9 +28,7 @@ class WhiteCard extends Component {
     return (
       <li className={classNames(classes)}>
         <div className={s.container}>
-          <div className={s.text}>
-            {this.props.text}
-          </div>
+          <div className={s.text} dangerouslySetInnerHTML={{__html: this.props.text}} />
           <div className={s.deck}>
             {this.props.deck}
           </div>

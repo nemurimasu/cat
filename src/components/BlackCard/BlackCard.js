@@ -28,9 +28,7 @@ class BlackCard extends Component {
     return (
       <li className={s.root}>
         <div className={s.container}>
-          <div className={s.text}>
-            {this.props.text}
-          </div>
+          <div className={s.text} dangerouslySetInnerHTML={{__html: this.props.text}} />
           <div className={s.bottom}>
             <div className={s.actions}>
               {drawAction}

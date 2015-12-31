@@ -35,7 +35,7 @@ const router = new Router(on => {
           {key: 5, text: "Pictures of boobs.", deck: "Base Set"},
           {key: 6, text: "Doing the right thing.", deck: "Base Set"},
           {key: 7, text: "The violation of our most basic human rights.", deck: "Base Set"},
-          {key: 8, text: "Viagra®.", deck: "Base Set"},
+          {key: 8, text: "Viagra&reg;.", deck: "Base Set"},
           {key: 9, text: "Self-loathing.", deck: "Base Set"},
           //{key: 10, text: "Spectacular abs.", deck: "Base Set"},
           //{key: 11, text: "A balanced breakfast.", deck: "Base Set"},
