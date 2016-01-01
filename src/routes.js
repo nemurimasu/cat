@@ -9,7 +9,6 @@
 
 import React from 'react';
 import Router from 'react-routing/src/Router';
-import fetch from './core/fetch';
 import App from './components/App';
 import NotFoundPage from './components/NotFoundPage';
 import ErrorPage from './components/ErrorPage';

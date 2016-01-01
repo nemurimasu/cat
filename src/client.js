@@ -11,7 +11,6 @@ import 'babel-core/polyfill';
 import ReactDOM from 'react-dom';
 import Router from './routes';
 import Location from './core/Location';
-import { addEventListener, removeEventListener } from './core/DOMUtils';
 
 let cssContainer = document.getElementById('css');
 const appContainer = document.getElementById('app');
