@@ -21,8 +21,10 @@ export default function gamePhase(state = initialState, action = {}) {
 
 export function selectWhite(whiteId) {
   return (dispatch, getState) => {
-    const state = getState().gamePhase;
-    if (state.mode !== 'pick' || state.black.pick <= state.selected.length || ~state.selected.findIndex(c => c === whiteId)) {
+    const { hand, gamePhase } = getState();
+    if (gamePhase.mode !== 'pick' || gamePhase.black.pick <= gamePhase.selected.length ||
+      ~gamePhase.selected.findIndex(c => c === whiteId) ||
+      !~hand.cards.findIndex(c => c.key === whiteId)) {
       return;
     }
     dispatch({
