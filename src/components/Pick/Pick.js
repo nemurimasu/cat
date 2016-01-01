@@ -21,14 +21,19 @@ import * as gamePhaseActions from '../../redux/modules/gamePhase';
     black: state.gamePhase.black,
     whites: state.hand.cards,
     selected: state.gamePhase.selected,
-  }),
-  {deselectWhite: gamePhaseActions.deselectWhite}
+  }), {
+    deselectWhite: gamePhaseActions.deselectWhite,
+    submit: gamePhaseActions.submit,
+  }
 )
 class Pick extends Component {
   
   static propTypes = {
     black: PropTypes.object.isRequired,
     whites: PropTypes.array.isRequired,
+    selected: PropTypes.array.isRequired,
+    deselectWhite: PropTypes.func.isRequired,
+    submit: PropTypes.func.isRequired,
   };
 
   render() {
@@ -44,10 +49,13 @@ class Pick extends Component {
           <BlackCard text={black.text} deck={black.deck} pick={black.pick} />
           {this.props.selected.map((c) => {
             const onClick = () => {
-              this.props.deselectWhite(c.key);
+              this.props.deselectWhite(c);
             };
-            return <WhiteCard key={c.key} text={whites[c.key].text} deck={whites[c.key].deck} onClick={onClick} />;
+            return <WhiteCard key={c} text={whites[c].text} deck={whites[c].deck} onClick={onClick} />;
           })}
+          <li className={s.submit} onClick={this.props.submit}>
+            Submit
+          </li>
         </ul>
       </div>
     );

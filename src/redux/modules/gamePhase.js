@@ -1,5 +1,6 @@
 const SELECT = 'gamePhase/select';
 const DESELECT = 'gamePhase/deselect';
+const SUBMIT = 'gamePhase/submit';
 
 const initialState = {
   mode: 'wait',
@@ -8,35 +9,48 @@ const initialState = {
 export default function gamePhase(state = initialState, action = {}) {
   switch (action.type) {
     case SELECT:
-      if (state.mode !== 'pick' || state.black.pick <= state.selected.length) {
-        return state;
-      }
-      return Object.assign({}, state, {selected: [...state.selected, {key:action.whiteId}]});
+      return Object.assign({}, state, {selected: [...state.selected, action.whiteId]});
     case DESELECT:
-      if (state.mode !== 'pick') {
-        return state;
-      }
-      const index = state.selected.findIndex((c) => c.key === action.whiteId);
-      if (index === -1)
-      {
-        return state;
-      }
-      return Object.assign({}, state, {selected: [...state.selected.slice(0, index), ...state.selected.slice(index+1)]});
+      return Object.assign({}, state, {selected: state.selected.filter(c => c !== action.whiteId)});
+    case SUBMIT:
+      return Object.assign({}, state, {mode: 'wait'});
     default:
       return state;
   }
 };
 
 export function selectWhite(whiteId) {
-  return {
-    type: SELECT,
-    whiteId,
+  return (dispatch, getState) => {
+    const state = getState().gamePhase;
+    if (state.mode !== 'pick' || state.black.pick <= state.selected.length || ~state.selected.findIndex(c => c === whiteId)) {
+      return;
+    }
+    dispatch({
+      type: SELECT,
+      whiteId,
+    });
   };
 };
 
 export function deselectWhite(whiteId) {
-  return {
-    type: DESELECT,
-    whiteId,
+  return (dispatch, getState) => {
+    const state = getState().gamePhase;
+    if (state.mode !== 'pick' || !~state.selected.findIndex(c => c === whiteId)) {
+      return;
+    }
+    dispatch({
+      type: DESELECT,
+      whiteId,
+    });
   };
-}
+};
+
+export function submit() {
+  return (dispatch, getState) => {
+    const state = getState().gamePhase;
+    if (state.mode !== 'pick' || state.black.pick !== state.selected.length) {
+      return;
+    }
+    dispatch({ type: SUBMIT, selected: state.selected });
+  };
+};

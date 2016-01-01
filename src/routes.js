@@ -49,7 +49,7 @@ const router = new Router(on => {
           deck: "Base Set",
           pick: 1,
         },
-        selected: [ {key: 3} ],
+        selected: [ 3 ],
       }
     });
     return (

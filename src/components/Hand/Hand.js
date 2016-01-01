@@ -30,10 +30,7 @@ class Hand extends Component {
   };
 
   render() {
-    const selectedCards = {};
-    for (let selectedCard of this.props.selected) {
-      selectedCards[selectedCard.key] = true;
-    }
+    const selectedCards = new Set(this.props.selected);
     return (
       <div className={s.root}>
         <ul className={s.container}>
@@ -41,7 +38,7 @@ class Hand extends Component {
             const onClick = (event) => {
               this.props.selectWhite(c.key);
             };
-            return <WhiteCard key={c.key} text={c.text} deck={c.deck} selected={!!selectedCards[c.key]} onClick={onClick} />;
+            return <WhiteCard key={c.key} text={c.text} deck={c.deck} selected={selectedCards.has(c.key)} onClick={onClick} />;
           })}
         </ul>
       </div>
