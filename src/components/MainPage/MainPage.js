@@ -11,6 +11,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import s from './MainPage.scss';
 import withStyles from '../../decorators/withStyles';
+import Czar from '../Czar';
 import Hand from '../Hand';
 import Pick from '../Pick';
 
@@ -27,14 +28,20 @@ class MainPage extends Component {
   };
 
   render() {
-    var bottomUi;
+    let topUi;
+    if (this.props.gameMode === 'czar') {
+      topUi = <Czar />;
+    } else {
+      topUi = <Hand />;
+    }
+    let bottomUi;
     if (this.props.gameMode === 'pick') {
       bottomUi = <Pick />;
     }
     return (
       <div className={s.root}>
         <div className={s.container}>
-          <Hand />
+          {topUi}
           {bottomUi}
         </div>
       </div>
