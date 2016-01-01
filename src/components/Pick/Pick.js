@@ -38,9 +38,10 @@ class Pick extends Component {
 
   render() {
     const black = this.props.black;
-    const whites = {};
-    for (let white of this.props.whites) {
-      whites[white.key] = white;
+    const whites = Object.assign({}, ...this.props.whites.map(c => ({[c.key]: c})));
+    let submit;
+    if (this.props.selected.length == black.pick) {
+      submit = <li className={s.submit} onClick={this.props.submit}>Submit</li>;
     }
     return (
       <div className={s.root}>
@@ -53,9 +54,7 @@ class Pick extends Component {
             };
             return <WhiteCard key={c} text={whites[c].text} deck={whites[c].deck} onClick={onClick} />;
           })}
-          <li className={s.submit} onClick={this.props.submit}>
-            Submit
-          </li>
+          {submit}
         </ul>
       </div>
     );

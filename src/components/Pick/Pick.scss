@@ -28,6 +28,19 @@
   margin: 1em 0 0 1em;
 }
 
+.container > li.submit {
+  background: #7a7;
+  color: #000;
+  font-family: 'Roboto', sans-serif;
+  border: 1pt solid #777;
+  border-radius: 1em;
+  width: 8em;
+  height: 12em;
+  padding: 1em;
+  box-shadow: 2pt 2pt 2pt rgba(0,0,0,0.5);
+  cursor: pointer;
+}
+
 .heading {
   text-align: center;
   background: #333;
