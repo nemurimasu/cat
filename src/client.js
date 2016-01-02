@@ -11,6 +11,7 @@ import 'babel-core/polyfill';
 import ReactDOM from 'react-dom';
 import Router from './routes';
 import Location from './core/Location';
+import WebFont from 'webfontloader';
 
 let cssContainer = document.getElementById('css');
 const appContainer = document.getElementById('app');
@@ -37,9 +38,23 @@ function run() {
   });
 }
 
-// Run the application when both DOM is ready and page content is loaded
-if (['complete', 'loaded', 'interactive'].includes(document.readyState) && document.body) {
-  run();
-} else {
-  document.addEventListener('DOMContentLoaded', run, false);
-}
+const fontReady = new Promise((done, err) => {
+  WebFont.load({
+    google: {
+      families: ['Roboto:500,500italic'],
+    },
+    active: done,
+    inactive: err,
+  });
+}).catch(e => console.warn('failed to load fonts'));
+
+const domReady = new Promise(done => {
+  // Run the application when both DOM is ready and page content is loaded
+  if (['complete', 'loaded', 'interactive'].includes(document.readyState) && document.body) {
+    done();
+  } else {
+    document.addEventListener('DOMContentLoaded', done, false);
+  }
+});
+
+Promise.all([fontReady, domReady]).then(run);
