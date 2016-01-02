@@ -9,7 +9,6 @@
 
 import React, { Component, PropTypes } from 'react';
 import s from './App.scss';
-import Header from '../Header';
 
 class App extends Component {
 
@@ -29,7 +28,6 @@ class App extends Component {
   render() {
     return !this.props.error ? (
       <div>
-        <Header />
         {this.props.children}
       </div>
     ) : this.props.children;
