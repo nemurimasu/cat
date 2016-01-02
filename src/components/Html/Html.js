@@ -37,6 +37,9 @@ class Html extends Component {
         <style id="css" dangerouslySetInnerHTML={{ __html: this.props.css }} />
       </head>
       <body>
+        {/* This div prevents Chrome from using subpixel font smoothing when it's not supposed to. */}
+        {/* See https://github.com/adobe/brackets/issues/9978 */}
+        <div style={{transform: 'translateZ(0)'}}/>
         <div id="app" dangerouslySetInnerHTML={{ __html: this.props.body }} />
         <script src={this.props.entry}></script>
       </body>
