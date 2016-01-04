@@ -25,7 +25,12 @@ delete appContainer.__data;
 
 function render(state) {
   Router.dispatch(state, (newState, component) => {
-    ReactDOM.render(component, appContainer);
+    ReactDOM.render(component, appContainer, () => {
+      if (cssContainer) {
+        cssContainer.parentNode.removeChild(cssContainer);
+        cssContainer = null;
+      }
+    });
   });
 }
 
