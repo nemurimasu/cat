@@ -17,6 +17,7 @@ import Html from './components/Html';
 import assets from './assets';
 import { listenAddress, port } from './config';
 import createStore from './redux/create';
+import serialize from 'serialize-javascript';
 
 const server = global.server = express();
 
@@ -90,8 +91,8 @@ server.get('*', async (req, res, next) => {
       data.body = ReactDOM.renderToString(component);
       data.css = css.join('');
     });
-    
-    data.initialStore = store.getState();
+
+    data.initialStore = serialize(store.getState());
 
     const html = ReactDOM.renderToStaticMarkup(<Html {...data} />);
     res.status(statusCode).send('<!doctype html>\n' + html);
