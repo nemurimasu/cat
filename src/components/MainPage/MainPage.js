@@ -32,7 +32,7 @@ class MainPage extends Component {
   };
 
   componentWillMount() {
-    this.context.onSetTitle(title);
+    this.context.onSetTitle('Player UI');
   }
 
   render() {
