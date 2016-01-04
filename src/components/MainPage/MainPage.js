@@ -27,6 +27,14 @@ class MainPage extends Component {
     gameMode: PropTypes.string.isRequired
   };
 
+  static contextTypes = {
+    onSetTitle: PropTypes.func.isRequired,
+  };
+
+  componentWillMount() {
+    this.context.onSetTitle(title);
+  }
+
   render() {
     let topUi;
     if (this.props.gameMode === 'czar') {

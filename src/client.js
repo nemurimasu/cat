@@ -17,6 +17,7 @@ import createStore from './redux/create';
 let cssContainer = document.getElementById('css');
 const appContainer = document.getElementById('app');
 const context = {
+  insertCss: styles => styles._insertCss(),
 };
 
 const store = createStore(appContainer.__data || {});
