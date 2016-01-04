@@ -17,8 +17,8 @@ import createStore from './redux/create';
 let cssContainer = document.getElementById('css');
 const appContainer = document.getElementById('app');
 
-const store = createStore(JSON.parse(appContainer.dataset.store || '{}'));
-delete appContainer.dataset.store;
+const store = createStore(appContainer.__data || {});
+delete appContainer.__data;
 
 function render(state) {
   Router.dispatch(state, (newState, component) => {

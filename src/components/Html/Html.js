@@ -41,7 +41,8 @@ class Html extends Component {
         {/* This div prevents Chrome from using subpixel font smoothing when it's not supposed to. */}
         {/* See https://github.com/adobe/brackets/issues/9978 */}
         <div style={{transform: 'translateZ(0)'}}/>
-        <div id="app" dangerouslySetInnerHTML={{ __html: this.props.body }} data-store={JSON.stringify(this.props.initialStore || {})} />
+        <div id="app" dangerouslySetInnerHTML={{ __html: this.props.body }} />
+        <script type="text/javascript" dangerouslySetInnerHTML={{ __html: `document.getElementById('app').__data = ${JSON.stringify(this.props.initialStore || {})};` }} />
         <script src={this.props.entry}></script>
       </body>
       </html>
