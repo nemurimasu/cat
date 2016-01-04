@@ -8,14 +8,29 @@
  */
 
 import React, { Component, PropTypes } from 'react';
+import emptyFunction from 'fbjs/lib/emptyFunction';
 import s from './App.scss';
 
 class App extends Component {
 
   static propTypes = {
+    context: PropTypes.shape({
+      onPageNotFound: PropTypes.func,
+    }),
     children: PropTypes.element.isRequired,
     error: PropTypes.object,
   };
+
+  static childContextTypes = {
+    onPageNotFound: PropTypes.func.isRequired,
+  };
+
+  getChildContext() {
+    const context = this.props.context;
+    return {
+      onPageNotFound: context.onPageNotFound || emptyFunction,
+    };
+  }
 
   componentWillMount() {
     this.removeCss = s._insertCss();

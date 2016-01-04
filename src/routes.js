@@ -18,7 +18,7 @@ import { Provider } from 'react-redux';
 const router = new Router(on => {
   on('*', async (state, next) => {
     const component = await next();
-    return component && <App>{component}</App>;
+    return component && <App context={state.context}>{component}</App>;
   });
 
   on('/:table/:player', async (state) => {
@@ -30,8 +30,8 @@ const router = new Router(on => {
   });
 
   on('error', (state, error) => state.statusCode === 404 ?
-    <App error={error}><NotFoundPage /></App> :
-    <App error={error}><ErrorPage /></App>
+    <App context={state.context} error={error}><NotFoundPage /></App> :
+    <App context={state.context} error={error}><ErrorPage /></App>
   );
 });
 

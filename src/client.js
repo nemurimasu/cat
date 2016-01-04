@@ -16,6 +16,8 @@ import createStore from './redux/create';
 
 let cssContainer = document.getElementById('css');
 const appContainer = document.getElementById('app');
+const context = {
+};
 
 const store = createStore(appContainer.__data || {});
 delete appContainer.__data;
@@ -38,6 +40,7 @@ function run() {
       query: location.query,
       state: location.state,
       store,
+      context,
     });
     render(currentState);
   });

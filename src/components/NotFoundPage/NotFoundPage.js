@@ -16,6 +16,16 @@ const title = 'Page Not Found';
 @withStyles(s)
 class NotFoundPage extends Component {
 
+  static contextTypes = {
+    onSetTitle: PropTypes.func.isRequired,
+    onPageNotFound: PropTypes.func.isRequired,
+  };
+
+  componentWillMount() {
+    this.context.onSetTitle(title);
+    this.context.onPageNotFound();
+  }
+
   render() {
     return (
       <div>
