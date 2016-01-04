@@ -17,6 +17,7 @@ class Html extends Component {
     css: PropTypes.string,
     body: PropTypes.string.isRequired,
     entry: PropTypes.string.isRequired,
+    initialStore: PropTypes.object,
   };
 
   static defaultProps = {
@@ -40,7 +41,7 @@ class Html extends Component {
         {/* This div prevents Chrome from using subpixel font smoothing when it's not supposed to. */}
         {/* See https://github.com/adobe/brackets/issues/9978 */}
         <div style={{transform: 'translateZ(0)'}}/>
-        <div id="app" dangerouslySetInnerHTML={{ __html: this.props.body }} />
+        <div id="app" dangerouslySetInnerHTML={{ __html: this.props.body }} data-store={JSON.stringify(this.props.initialStore || {})} />
         <script src={this.props.entry}></script>
       </body>
       </html>
