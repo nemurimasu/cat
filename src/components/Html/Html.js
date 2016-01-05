@@ -8,6 +8,7 @@
  */
 
 import React, { Component, PropTypes } from 'react';
+import serialize from 'serialize-javascript';
 
 class Html extends Component {
 
@@ -42,7 +43,7 @@ class Html extends Component {
         {/* See https://github.com/adobe/brackets/issues/9978 */}
         <div style={{transform: 'translateZ(0)'}}/>
         <div id="app" dangerouslySetInnerHTML={{ __html: this.props.body }} />
-        <script type="text/javascript" dangerouslySetInnerHTML={{ __html: `document.getElementById('app').__data = ${this.props.initialStore || {}};` }} />
+        <script type="text/javascript" dangerouslySetInnerHTML={{ __html: `document.getElementById('app').__data = ${serialize(this.props.initialStore || {})};` }} />
         <script src={this.props.entry}></script>
       </body>
       </html>
